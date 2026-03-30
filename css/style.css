@@ -11,7 +11,83 @@ body{
     line-height: 1.6;/*altura entre linhas 1.6x o tamanho da fonte*/
     color:black;/*cor do texto preto*/
     background: linear-gradient(135deg,#FF0000 0%, #FFFF00 100%); /*gradiente de fundo: 135deg e a direção, de amarelo escuro para amarelo claro*/
-    padding: 1rem 5%;/*1rem = 16px tamanho padrão da fonte, 5% da largura do container*/
+     min-height: 100vh;/*vh = viewport height, Minimo de 100% da altura da tela*/
+}
+header{
+    background-color: rgba(255, 255, 255, 0.65);/*branco com 95% de opacidade (transparencia)*/
+    padding: 1rem 5%; /*1rem = 16px tamanho padrão da fonte, 5% da largura do container*/
     display: flex; /*ativa o flexbox para layout flexível*/
     align-items: center; /*alinha os itens verticalmente ao centro*/
+    justify-content: space-between;/*espaço entre os itens (logo de um lado e o menu do outro*/
+    flex-wrap: wrap;/*permite quebra de linha em telas pequenas*/
+    gap: 1rem;/*espaçamento entre os itens flexiveis*/
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);/*sombra: eixo x, eixo y desfoque da cor 0.1(alpha)*/
+    position: sticky;/*grudar o cabeçalho ao rolar a página*/
+    top: 0;/*distancia do topo ao grudar*/
+    z-index: 1000;/*garante que fique acima de outros elementos*/
+}
+header img{
+    height: 60px;/*altura fixa em pixel*/
+    width: auto;/*largura automatica para manter a proporção de acordo com a altura*/
+    transition: transform 0.3s ease;/*transição suave de 3 segundos para animação*/
+}
+header img:hover{/*hover = quando passa o mouse faz alguma coisa*/
+    transform: scale(1.05);/*aumentar em 5% a minha imagem*/
+}
+/*===NAVEGAÇÃO nav===*/
+nav{
+    display: flex;
+    gap: 2rem;/*32px de espaçamento entre os links*/
+    flex-wrap: wrap;
+}
+nav a{
+    text-decoration: none;/*remover o sublinhado padrão do link*/
+    color: #fa7705;/*cor roxa*/
+    font-weight: 600;/*peso da fonte (semi negrito)*/
+    padding: 0.5rem 1rem;/*8px em cima/baixo, 16px nas laterais*/
+    border-radius: 25px;/*bordas arredondadas*/
+    transition: all 0.3s ease;/*transição suave para todas as propriedades*/
+    position: relative;/*necessário para o pseudo elemento ::after*/
+}
+nav a:hover{
+    background-color: #fa7705;
+    color: white;
+    transform: translate(-2px);/*move 2px para cima*/
+    box-shadow: 0 5px 15px #ffff04(251, 2, 2, 0.879);/*sombra amarela suave*/
+}
+nav a::after{/*pseudo elemento para criar a linha animada abaixo dos links*/
+    content: '';/*necessario para criar o elemento*/
+    position: absolute;/*posição em relação ao link*/
+    bottom: 0;/*cola a linha na parte inferior*/
+    left: 50%;/*começa do meio para as laterais*/
+    transform: translateX(-50%);/*centraliza horizontalmente*/
+    width: 0;/*começa com largura 0*/
+    height: 2px;/*altura da linha*/
+    background-color: #ff0000;
+    transition: width 0.3s ease;/*anima apenas a largura*/
+}
+nav a:hover::after{
+    width: 80%;/*expande para 80% da largura do link*/
+}
+/*===CONTEUDO DO BLOG==*/
+main{
+    max-width: 1200px;/*largura maxima em pixels*/
+    margin: 2rem auto;/*32px em cima/baixo e auto nas laterais*/
+    padding: 2rem;/*espaçamento interno de 32px em todos os lados*/
+    background-color: #ffff00a7;
+    border-radius: 20px;/*bordas arrendondadas*/
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);/*sombra mais pronunciada*/
+    backdrop-filter: blur(10px);/*efeito de desfoque no fundo*/
+    animation: slideIn 0.5s ease-out;/*animação de entrada*/
+}
+/*===DEFINIÇÃO DA ANIMAÇÃO===*/
+@keyframes slideIn{/*aplicando os quadros de animação*/
+    from{/*estado inicial*/
+        opacity: 0;/*invisilvel*/
+        transform: translateY(30px);/*30px para baixo*/
+    }
+    to{/*estado final*/
+        opacity: 1;/*visivel*/
+        transform: translateY(0);/*posição original*/
+    }
 }
